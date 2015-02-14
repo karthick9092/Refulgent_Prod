@@ -1,27 +1,11 @@
 package com.refulgent.core.sample.repo;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.refulgent.entity.sample.Product;
 
-public class ProductRepository {
-	
-	@PersistenceContext
-	EntityManager em;
+@Repository
+public interface ProductRepository extends JpaRepository<Product, Long>{
 
-	@SuppressWarnings("unchecked")
-	public List<Product> findAll() {
-		// TODO Auto-generated method stub
-		List<Product> productList = null;
-		try {
-			String sql = "select c from Product as c";
-			productList = em.createQuery(sql).getResultList();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return productList;
-	}	
 }
